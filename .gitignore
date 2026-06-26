@@ -1,0 +1,8 @@
+__pycache__/
+venv/
+*.pyc
+chromadb/
+.chromadb/
+data/candidates.jsonl
+data/[PUB] India_runs_data_and_ai_challenge/
+data/job_description.docx

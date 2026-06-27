@@ -174,6 +174,7 @@ def skill_score(candidate, required_skills: list[dict], preferred_skills: list[d
     Returns:
         {
             "score"                : float 0-1,
+            "required_matched"     : int,
             "required_match_ratio" : float,
             "preferred_match_ratio": float,
             "proficiency_score"    : float | None,
@@ -283,11 +284,12 @@ Return ONLY this JSON:
     final_score     = min(1.0, (required_component * 0.8) + preferred_bonus)
  
     return {
-        "score"                : round(final_score, 4),
-        "required_match_ratio" : round(required_ratio, 4),
-        "preferred_match_ratio": round(preferred_ratio, 4),
-        "proficiency_score"    : round(float(proficiency_score), 4) if proficiency_score is not None else None,
-        "duration_score"       : round(float(duration_score), 4)    if duration_score    is not None else None,
-        "reasoning"            : result.get("reasoning", "llm_error"),
+        "score"                 : round(final_score, 4),
+        "matched_required_count": required_matched,
+        "required_match_ratio"  : round(required_ratio, 4),
+        "preferred_match_ratio" : round(preferred_ratio, 4),
+        "proficiency_score"     : round(float(proficiency_score), 4) if proficiency_score is not None else None,
+        "duration_score"        : round(float(duration_score), 4)    if duration_score    is not None else None,
+        "reasoning"             : result.get("reasoning", "llm_error"),
     }
     

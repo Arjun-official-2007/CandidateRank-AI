@@ -173,13 +173,13 @@ def skill_score(candidate, required_skills: list[dict], preferred_skills: list[d
  
     Returns:
         {
-            "score"                : float 0-1,
-            "required_matched"     : int,
-            "required_match_ratio" : float,
-            "preferred_match_ratio": float,
-            "proficiency_score"    : float | None,
-            "duration_score"       : float | None,
-            "reasoning"            : str
+            "score"                 : float 0-1,
+            "matched_required_count": int,
+            "required_match_ratio"  : float,
+            "preferred_match_ratio" : float,
+            "proficiency_score"     : float | None,
+            "duration_score"        : float | None,
+            "reasoning"             : str
         }
     """
  

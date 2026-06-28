@@ -10,7 +10,7 @@ Two responsibilities:
 import json
 from pathlib import Path
 from docx import Document
-from llm import call_llm
+from llm import llm_call
 
 def _extract_text(docx_path: str) -> str:
     doc = Document(docx_path)
@@ -52,7 +52,7 @@ def parse_jd(docx_path: str) -> dict:
     """
     jd_text = _extract_text(docx_path)
     prompt  = _PARSE_PROMPT.format(jd_text=jd_text)
-    result  = call_llm(prompt)
+    result  = llm_call(prompt)
 
     if result.get("score") is None:
         # llm_error fallback — return safe defaults
@@ -153,7 +153,7 @@ def is_disqualified(candidate: dict, disqualifiers: list[str]) -> tuple[bool, st
         profile=json.dumps(payload, indent=2),
     )
 
-    result = call_llm(prompt)
+    result = llm_call(prompt)
 
     if result.get("score") is None:
         # On LLM error, default to not disqualified — don't penalise on uncertainty

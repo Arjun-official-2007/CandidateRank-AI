@@ -10,7 +10,7 @@ Two responsibilities:
 import json
 from pathlib import Path
 from docx import Document
-from llm import llm_call
+from src.output.llm import llm_call
 
 def _extract_text(docx_path: str) -> str:
     doc = Document(docx_path)

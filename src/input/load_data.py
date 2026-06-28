@@ -43,14 +43,17 @@ def build_candidate_record(candidate):
 
 
 def load_all_candidates(file_path):
-
-    texts,ids,metadatas=[],[],[]
+    texts, ids, metadatas = [], [], []
     for candidate in Candidate_stream(file_path):
-        text,id,metadata=build_candidate_record(candidate)
-        texts.append(text)
-        ids.append(id)
-        metadatas.append(metadata)
-    return texts,ids,metadatas
+        try:
+            text, id, metadata = build_candidate_record(candidate)
+            texts.append(text)
+            ids.append(id)
+            metadatas.append(metadata)
+        except (KeyError, TypeError) as e:
+            print(f"Skipping candidate {candidate.get('candidate_id', 'unknown')}: {e}")
+            continue
+    return texts, ids, metadatas
 
 if __name__ == "__main__":
     texts, ids, metadatas = load_all_candidates(r"..\..\data\candidates.jsonl")

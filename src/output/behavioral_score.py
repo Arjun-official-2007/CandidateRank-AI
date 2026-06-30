@@ -1,6 +1,6 @@
 import json
 from datetime import datetime
-from llm import llm_call
+from src.output.llm import llm_call
 
 PROFICIENCY_RANK = {"beginner": 0, "intermediate": 1, "advanced": 2}
  

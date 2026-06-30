@@ -6,13 +6,11 @@ End-to-end orchestration for CandidateRank AI.
 Usage:
     python main.py --jd path/to/job_description.docx
 """
-
+from dotenv import load_dotenv
 import argparse
 import asyncio
 import csv
 from concurrent.futures import ThreadPoolExecutor
-
-import chromadb
 
 from src.input.search import candidate_rank
 from src.output.candidate_store import load_candidate_store
@@ -20,6 +18,7 @@ from src.output.jd_parser import parse_jd, is_disqualified
 from src.output.behavioral_score import skill_score, career_score, availability_score, trust_score
 from src.output.score_fusion import fuse, rank
 
+load_dotenv()
 # ── Config ────────────────────────────────────────────────────────────────────
 
 CHROMA_PATH     = "./chromadb"

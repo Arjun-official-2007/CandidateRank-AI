@@ -1,4 +1,3 @@
-from docx import Document
 import chromadb
 
 def candidate_rank(jd_text, top_k=100):
